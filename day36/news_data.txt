@@ -1,0 +1,84 @@
+{
+  "status": "ok",
+  "totalResults": 6,
+  "articles": [
+    {
+      "source": {
+        "id": "the-verge",
+        "name": "The Verge"
+      },
+      "author": "Andrew J. Hawkins",
+      "title": "Dozens of Tesla Cybertrucks vandalized by someone who really doesn’t like Elon Musk",
+      "description": "Dozens of Tesla Cybertrucks in a Florida parking lot were defaced with a crude message about Elon Musk last week. The message was eventually removed.",
+      "url": "http://www.theverge.com/2024/6/24/24184698/tesla-cybertruck-vandal-deface-elon-musk",
+      "urlToImage": "https://cdn.vox-cdn.com/thumbor/PdiEWHf2TFxmGH5HMO7cw5abHag=/0x0:2890x1564/1200x628/filters:focal(1445x782:1446x783)/cdn.vox-cdn.com/uploads/chorus_asset/file/25503559/Screenshot_2024_06_24_at_9.15.15_AM.png",
+      "publishedAt": "2024-06-24T14:29:00Z",
+      "content": "Dozens of Tesla Cybertrucks vandalized by someone who really doesnt like Elon Musk\r\nDozens of Tesla Cybertrucks vandalized by someone who really doesnt like Elon Musk\r\n / How long until Musk starts t… [+2240 chars]"
+    },
+    {
+      "source": {
+        "id": "business-insider",
+        "name": "Business Insider"
+      },
+      "author": "Nora Naughton",
+      "title": "GM and Ford's gas-powered profits are a problem for Tesla's EV slowdown",
+      "description": "Companies like GM and Ford can rely on hybrids and gas-powered cars to get through the EV slowdown. Tesla can't do that.",
+      "url": "http://www.businessinsider.com/tesla-challenges-amid-hybrid-craze-ford-gm-gas-profits-2024-4",
+      "urlToImage": "https://i.insider.com/66312fcf0dfb1341e900d02b?width=1200&format=jpeg",
+      "publishedAt": "2024-04-30T18:42:46Z",
+      "content": "Tesla is finally being forced to reckon with a slowdown in electric-vehicle demand, and CEO Elon Musk's tactics are likely to look different than his peers' in the automotive industry.\r\nBoth Ford and… [+2634 chars]"
+    },
+    {
+      "source": {
+        "id": "business-insider",
+        "name": "Business Insider"
+      },
+      "author": "Ana Altchek",
+      "title": "Elon Musk is going 'hardcore' again at Tesla",
+      "description": "Elon Musk made it crystal clear he isn't messing around about the need for meaningful layoffs, a new report reveals.",
+      "url": "http://www.businessinsider.com/elon-musk-tesla-hardcore-layoffs-report-2024-4",
+      "urlToImage": "https://i.insider.com/663148380dfb1341e900e17a?width=1200&format=jpeg",
+      "publishedAt": "2024-04-30T17:42:42Z",
+      "content": "Elon Musk wants there to be no doubt that Tesla needs to be \"hardcore.\"\r\nMusk reaffirmed the company's need for meaningful layoffs and cost-cutting in an email late Monday night, according to a repor… [+2489 chars]"
+    },
+    {
+      "source": {
+        "id": "next-big-future",
+        "name": "Next Big Future"
+      },
+      "author": "Brian Wang",
+      "title": "Superconducting Magnet Reduces the Cost for a Fusion Reactor by a Factor of 40 | NextBigFuture.com",
+      "description": "A new 20 Tesla Superconducting magnet reduces the cost per watt of a fusion reactor by a factor of almost 40. MIT worked with Commonwealth Fusion Systems, a",
+      "url": "https://www.nextbigfuture.com/2024/03/superconducting-magnet-reduces-the-cost-for-a-fusion-reactor-by-a-factor-of-40.html",
+      "urlToImage": "https://nextbigfuture.s3.amazonaws.com/uploads/2024/03/Screen-Shot-2024-03-26-at-12.26.59-PM.jpg",
+      "publishedAt": "2024-03-26T19:28:51Z",
+      "content": "A new 20 Tesla Superconducting magnet reduces the cost per watt of a fusion reactor by a factor of almost 40. MIT worked with Commonwealth Fusion Systems, a startup with over $2 billion in funding. T… [+1984 chars]"
+    },
+    {
+      "source": {
+        "id": "next-big-future",
+        "name": "Next Big Future"
+      },
+      "author": "Brian Wang",
+      "title": "What is More Valuable Than Tesla FSD Robotaxi? Robotrucks. | NextBigFuture.com",
+      "description": "Tesla FSD is making huge progress on a weekly basis. Like all AI products like Open ChatGPT and the chess and Go AI programs this will continue. Those looking",
+      "url": "https://www.nextbigfuture.com/2024/03/what-is-more-valuable-than-tesla-fsd-robotaxi-robotrucks.html",
+      "urlToImage": "https://nextbigfuture.s3.amazonaws.com/uploads/2024/03/Screen-Shot-2024-03-26-at-10.43.45-AM.jpg",
+      "publishedAt": "2024-03-26T18:32:04Z",
+      "content": "Tesla FSD is making huge progress on a weekly basis. Like all AI products like Open ChatGPT and the chess and Go AI programs this will continue. Those looking at the nearterm are looking at take rate… [+4089 chars]"
+    },
+    {
+      "source": {
+        "id": "next-big-future",
+        "name": "Next Big Future"
+      },
+      "author": "Brian Wang",
+      "title": "How does AI make Tesla FSD 12.3 human like? Deep Dive Analysis | NextBigFuture.com",
+      "description": "Tesla released FSD 12.3 to its employees and 100,000 select drivers and yesterday announced it is going wide to all 400,000+ FSD US customers. Michael Dell,",
+      "url": "https://www.nextbigfuture.com/2024/03/how-does-ai-make-tesla-fsd-12-3-human-like-deep-dive-analysis.html",
+      "urlToImage": "https://nextbigfuture.s3.amazonaws.com/uploads/2024/03/Screen-Shot-2024-03-26-at-10.02.45-AM-1024x566.jpg",
+      "publishedAt": "2024-03-26T17:09:09Z",
+      "content": "Brian Wang is a Futurist Thought Leader and a popular Science blogger with 1 million readers per month. His blog Nextbigfuture.com is ranked #1 Science News Blog. It covers many disruptive technology… [+593 chars]"
+    }
+  ]
+}
