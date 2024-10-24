@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("index.html",all_posts=posts)
+    return render_template("index.html", all_posts=posts)
 
 
 @app.route("/contact")
@@ -29,7 +29,7 @@ def get_about():
 
 @app.route("/post/<int:post_id>")
 def post_detail(post_id):
-    return render_template("post.html", all_posts=posts)
+    return render_template("post.html", all_posts=posts, post_id=post_id)
 
 
 if __name__ == "__main__":
