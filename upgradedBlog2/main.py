@@ -28,7 +28,7 @@ def get_about():
 
 
 @app.route("/post/<int:post_id>")
-def post_detail():
+def post_detail(post_id):
     return render_template("post.html", all_posts=posts)
 
 
