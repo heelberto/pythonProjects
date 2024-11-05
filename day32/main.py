@@ -19,6 +19,6 @@ with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
 
     now = datetime.datetime.now()
     if now.weekday() == 0:
-        connection.sendmail(from_addr=my_email, to_addrs=my_yahoo_email,
+        connection.sendmail(from_addr=my_email, to_addrs=my_email,
                             msg=f"Subject:Hello\n\n{random.choice(quote_list)}")
 
