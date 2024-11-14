@@ -12,10 +12,13 @@ Bootstrap5(app)
 
 
 class CafeForm(FlaskForm):
-    cafe = StringField('Cafe name', validators=[DataRequired()])
-    map_link = URLField()
-    open = TimeField()
-    close = TimeField()
+    cafe = StringField(label='Cafe name', validators=[DataRequired()])
+    map_link = URLField(label='Map Link')
+    open = TimeField(label="Open", format="%I:%M%p")
+    close = TimeField(label="Close")
+    coffee = StringField(label="Coffee")
+    wifi = StringField(label="WiFi")
+    power = StringField(label="Power")
     submit = SubmitField('Submit')
 
 
@@ -34,11 +37,24 @@ def home():
     return render_template("index.html")
 
 
-@app.route('/add')
+@app.route('/add', methods=['GET', 'POST'])
 def add_cafe():
     form = CafeForm()
     if form.validate_on_submit():
-        print("True")
+        with open('cafe-data.csv', 'a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(
+                [
+                    form.cafe.data,
+                    form.map_link.data,
+                    form.open.data,
+                    form.close.data,
+                    form.coffee.data,
+                    form.wifi.data,
+                    form.power.data
+                ]
+            )
+        return render_template('add.html', form=form)
     # Exercise:
     # Make the form write a new row into cafe-data.csv
     # with   if form.validate_on_submit()
