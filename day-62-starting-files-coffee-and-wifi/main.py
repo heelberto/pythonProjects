@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, redirect
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, URLField, TimeField
+from wtforms import StringField, SubmitField, URLField, TimeField, SelectField
 from wtforms.validators import DataRequired
 import csv
 
@@ -16,7 +16,7 @@ class CafeForm(FlaskForm):
     map_link = URLField(label='Map Link')
     open = TimeField(label="Open")
     close = TimeField(label="Close")
-    coffee = StringField(label="Coffee")
+    coffee = SelectField(label="Coffee", choices=[("☕️"), ("☕️☕️"), ("☕️☕️☕️"), ("☕️☕️☕️☕️"), ("☕️☕️☕️☕️☕️")])
     wifi = StringField(label="WiFi")
     power = StringField(label="Power")
     submit = SubmitField('Submit')
