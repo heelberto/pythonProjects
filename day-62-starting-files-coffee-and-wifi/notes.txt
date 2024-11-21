@@ -1,0 +1,7 @@
+11.20.24
+    Corrected two errors, the error in which it was appending a new line to the .csv file at the end of the last line
+    in the .csv file. Now it correctly adds each additional 'cafe' as its own row, as well as displays it correctly
+    in the /cafes page.
+    Still need to change the class for the form to allow the coffee, Wifi, and Power rating all allow emojis, that
+    seems to be a drop down menu.
+    Also need to adjust the Open/close field to show as 11AM, 7:30AM, instead of a 24 hour 3 field time.

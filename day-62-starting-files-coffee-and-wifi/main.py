@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, redirect
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, URLField, TimeField
@@ -12,9 +12,9 @@ Bootstrap5(app)
 
 
 class CafeForm(FlaskForm):
-    cafe = StringField(label='Cafe name', validators=[DataRequired()])
+    cafe = StringField(label='Cafe name')
     map_link = URLField(label='Map Link')
-    open = TimeField(label="Open", format="%I:%M%p")
+    open = TimeField(label="Open")
     close = TimeField(label="Close")
     coffee = StringField(label="Coffee")
     wifi = StringField(label="WiFi")
@@ -41,6 +41,7 @@ def home():
 def add_cafe():
     form = CafeForm()
     if form.validate_on_submit():
+        print("All form submissions are valid")
         with open('cafe-data.csv', 'a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(
@@ -54,7 +55,9 @@ def add_cafe():
                     form.power.data
                 ]
             )
-        return render_template('add.html', form=form)
+        # return render_template('add.html', form=form)
+        return redirect(url_for('cafes'))
+    print('Form did not validate_on_submit')
     # Exercise:
     # Make the form write a new row into cafe-data.csv
     # with   if form.validate_on_submit()
