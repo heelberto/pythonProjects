@@ -17,7 +17,11 @@
         {% for row in cafes %}
             <tr>
             {% for item in row %}
-              <td>{{ item }}</td>
+                {% if item[:4] == "http" %}
+                    <td><a href="{{ item }}"> Map Link</a></td>
+                {% else %}
+                    <td>{{ item }}</td>
+                {% endif %}
             {% endfor %}
             </tr>
         {% endfor %}
