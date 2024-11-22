@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, redirect
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, URLField, TimeField, SelectField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, URL
 import csv
 
 
@@ -13,7 +13,7 @@ Bootstrap5(app)
 
 class CafeForm(FlaskForm):
     cafe = StringField(label='Cafe name')
-    map_link = URLField(label='Map Link')
+    map_link = URLField(label='Map Link', validators=[URL()])
     open = TimeField(label="Open")
     close = TimeField(label="Close")
     coffee = SelectField(label="Coffee", choices=[("☕️"), ("☕️☕️"), ("☕️☕️☕️"), ("☕️☕️☕️☕️"), ("☕️☕️☕️☕️☕️")])
@@ -42,7 +42,7 @@ def add_cafe():
     form = CafeForm()
     if form.validate_on_submit():
         print("All form submissions are valid")
-        with open('cafe-data.csv', 'a', newline='') as file:
+        with open('cafe-data.csv', 'a', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             writer.writerow(
                 [
