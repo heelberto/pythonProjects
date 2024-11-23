@@ -39,15 +39,16 @@
 			<span style="color:red">{{err}}</span>
 			{% endfor %}
           <br>
-          {{ form.wifi.label }}<br>{{ form.wifi(size=50) }}
+          {{ form.wifi.label }}<br>{{ form.wifi}}
           {% for err in form.wifi.errors %}
 			<span style="color:red">{{err}}</span>
 			{% endfor %}
           <br>
-          {{ form.power.label }}<br>{{ form.power(size=50) }}
+          {{ form.power.label }}<br>{{ form.power}}
           {% for err in form.power.errors %}
 			<span style="color:red">{{err}}</span>
 			{% endfor %}
+          <br>
           <br>
           {{ form.submit }}
         </p>

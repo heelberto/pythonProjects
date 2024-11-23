@@ -16,9 +16,9 @@ class CafeForm(FlaskForm):
     map_link = URLField(label='Map Link', validators=[URL()])
     open = TimeField(label="Open")
     close = TimeField(label="Close")
-    coffee = SelectField(label="Coffee", choices=[("☕️"), ("☕️☕️"), ("☕️☕️☕️"), ("☕️☕️☕️☕️"), ("☕️☕️☕️☕️☕️")])
-    wifi = StringField(label="WiFi")
-    power = StringField(label="Power")
+    coffee = SelectField(label="Coffee", choices=[("✘"), ("☕️"), ("☕️☕️"), ("☕️☕️☕️"), ("☕️☕️☕️☕️"), ("☕️☕️☕️☕️☕️")])
+    wifi = SelectField(label="WiFi", choices=[("✘"), ("💪"), ("💪💪"), ("💪💪💪"), ("💪💪💪💪"), ("💪💪💪💪💪")])
+    power = SelectField(label="Power", choices=[("✘"), ("🔌"), ("🔌🔌"), ("🔌🔌🔌"), ("🔌🔌🔌🔌"), ("🔌🔌🔌🔌🔌")])
     submit = SubmitField('Submit')
 
 
