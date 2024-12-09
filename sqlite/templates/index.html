@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title%} Home Page {% endblock %}
+{% block content%}
+<form action="{{url_for('home')}}">
+    <p>Title</p>
+    <input type="text" name="title_">
+    <p>Author</p>
+    <input type ="text" name="author_">
+    <p>Rating</p>
+    <input type="text" name="rating_">
+    <input type="submit" name="submit">
+</form>
+{% endblock %}
