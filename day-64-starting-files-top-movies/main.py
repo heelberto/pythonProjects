@@ -41,6 +41,13 @@ class Movie(db.Model):
     img_url: Mapped[str] = mapped_column(String(250), nullable=False)
 
 
+# Creating the form to update a movie rating
+class Movie_Update_Form(FlaskForm):
+    new_rating = StringField(label="Your Rating /10")
+    new_review = StringField(label='Your Review')
+    submit = SubmitField('Submit')
+
+
 # Create table schema in the database, requires application context
 with app.app_context():
     db.create_all()
@@ -66,6 +73,18 @@ with app.app_context():
 def home():
     all_movies = Movie.query.all()
     return render_template("index.html", movies=all_movies)
+
+@app.route("/edit", methods=["GET", "POST"])
+def edit():
+    form = Movie_Update_Form()
+    movie_id = request.args.get('movie_id')
+    movie = db.get_or_404(Movie, movie_id)
+    if form.validate_on_submit():
+        movie.rating = float(form.new_rating.data)
+        movie.review = form.new_review.data
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template('edit.html', movie=movie, form=form)
 
 
 if __name__ == '__main__':
