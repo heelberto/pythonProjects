@@ -7,11 +7,13 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import requests
+import os
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 Bootstrap5(app)
+imdb_token = os.environ.get('_TMDB_TOKEN_')
 
 
 # CREATE DB
@@ -47,6 +49,9 @@ class Movie_Update_Form(FlaskForm):
     new_review = StringField(label='Your Review')
     submit = SubmitField('Submit')
 
+class Movie_Title_Search(FlaskForm):
+    title_query = StringField(label='Movie Title')
+    submit = SubmitField('Add Movie')
 
 # Create table schema in the database, requires application context
 with app.app_context():
@@ -74,6 +79,7 @@ def home():
     all_movies = Movie.query.all()
     return render_template("index.html", movies=all_movies)
 
+
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
     form = Movie_Update_Form()
@@ -86,6 +92,7 @@ def edit():
         return redirect(url_for('home'))
     return render_template('edit.html', movie=movie, form=form)
 
+
 @app.route('/delete')
 def delete():
     movie_id = request.args.get('movie_id')
@@ -94,6 +101,23 @@ def delete():
         db.session.delete(movie)
         db.session.commit()
     return redirect(url_for('home'))
+
+
+@app.route('/add', methods=["GET", "POST"])
+def add():
+    form = Movie_Title_Search()
+    if form.validate_on_submit():
+        title_query = form.title_query.data
+        url = f"https://api.themoviedb.org/3/search/movie?query={title_query}&include_adult=false&language=en-US&page=1"
+        headers = {
+            'accept': 'applications/json',
+            'Authorization': f'Bearer {imdb_token}'
+        }
+        response = requests.get(url, headers=headers)
+        data = response.json()
+        query_list = data['results']
+        return render_template('select.html', query_list=query_list)
+    return render_template('add.html', form=form)
 
 
 if __name__ == '__main__':

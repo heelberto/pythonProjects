@@ -9,5 +9,9 @@
     <a href="#"> MOVIE TITLE - MOVIE RELEASE DATE</a>
   </p>
 
+    {% for movie in query_list %}
+        <p></p>
+        <a href="#">{{movie['original_title']}} - {{movie['release_date']}}</a>
+    {% endfor %}
 </div>
 {% endblock %}
