@@ -14,6 +14,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 Bootstrap5(app)
 imdb_token = os.environ.get('_TMDB_TOKEN_')
+IMDB_MOVIE_INFO = 'https://api.themoviedb.org/3/movie'
+IMDB_MOVIE_IMG = 'https://image.tmdb.org/t/p/w500'
 
 
 # CREATE DB
@@ -22,6 +24,7 @@ class Base(DeclarativeBase):
 
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///movie-collection.db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 # CREATE THE EXTENSTION
@@ -37,9 +40,9 @@ class Movie(db.Model):
     title: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
     year: Mapped[int] = mapped_column(Integer, nullable=False)
     description: Mapped[str] = mapped_column(String(500), nullable=False)
-    rating: Mapped[float] = mapped_column(Float, nullable=False)
-    ranking: Mapped[int] = mapped_column(Integer, nullable=False)
-    review: Mapped[str] = mapped_column(String(500), nullable=False)
+    rating: Mapped[float] = mapped_column(Float, nullable=True)
+    ranking: Mapped[int] = mapped_column(Integer, nullable=True)
+    review: Mapped[str] = mapped_column(String(500), nullable=True)
     img_url: Mapped[str] = mapped_column(String(250), nullable=False)
 
 
@@ -119,6 +122,28 @@ def add():
         return render_template('select.html', query_list=query_list)
     return render_template('add.html', form=form)
 
+
+@app.route("/find")
+def find():
+    movie_id = request.args.get("movie_id")
+    if movie_id:
+        movie_api_url = f'{IMDB_MOVIE_INFO}/{movie_id}'
+
+        headers = {
+            'accept': 'applications/json',
+            'Authorization': f'Bearer {imdb_token}'
+        }
+        result = requests.get(url=movie_api_url, headers=headers)
+        data = result.json()
+        new_movie = Movie(
+            title=data['title'],
+            year=data['release_date'].split('-')[0],
+            img_url=f'{IMDB_MOVIE_IMG}{data['poster_path']}',
+            description=data['overview']
+        )
+        db.session.add(new_movie)
+        db.session.commit()
+        return redirect(url_for('edit', movie_id=new_movie.id))
 
 if __name__ == '__main__':
     app.run(debug=True)
