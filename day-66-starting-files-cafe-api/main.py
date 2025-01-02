@@ -29,6 +29,10 @@ class Cafe(db.Model):
     can_take_calls: Mapped[bool] = mapped_column(Boolean, nullable=False)
     coffee_price: Mapped[str] = mapped_column(String(250), nullable=True)
 
+    def to_dict(self):
+        dictionary = {}
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
 
 with app.app_context():
     db.create_all()
@@ -60,8 +64,21 @@ def random_cafe():
             "can_take_calls": cafe.can_take_calls,
             "coffee_price": cafe.coffee_price,
         }
-
     return jsonify(cafe_to_dict(rand_cafe))
+
+    # alternate way of passing each 'column' from a cafe individually
+    # return jsonify(name=rand_cafe.name)
+
+@app.route("/all")
+def get_all():
+    cafes = db.session.execute(db.select(Cafe)).scalars().all()
+    return jsonify(cafes=[cafe.to_dict() for cafe in cafes])
+
+
+@app.route("/search/<string:cafe_name>")
+def cafe_search(cafe_name):
+    result = db.session.execute(db.select(Cafe).filter_by(location=cafe_name)).scalars()
+    return jsonify(cafes=[cafe.to_dict() for cafe in result])
 
 # HTTP POST - Create Record
 
