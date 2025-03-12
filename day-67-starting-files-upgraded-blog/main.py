@@ -11,9 +11,18 @@ from datetime import date
 
 
 app = Flask(__name__)
+ckeditor = CKEditor(app)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 Bootstrap5(app)
 
+
+class PostForm(FlaskForm):
+    title = StringField('Title')
+    subtitle = StringField('Subtitle')
+    author = StringField('Author')
+    bg_url = StringField('url')
+    body = CKEditorField('Body')
+    submit = SubmitField('Submit')
 
 # CREATE DATABASE
 class Base(DeclarativeBase):
@@ -44,15 +53,19 @@ def get_all_posts():
     return render_template("index.html", all_posts=posts)
 
 
-# TODO: Add a route so that you can click on individual posts.
 @app.route('/show_post/<post_id>')
 def show_post(post_id):
-    # TODO: Retrieve a BlogPost from the database based on the post_id
     requested_post = db.get_or_404(BlogPost, post_id)
     return render_template("post.html", post=requested_post)
 
 
 # TODO: add_new_post() to create a new blog post
+@app.route('/new-post', methods=['GET', 'POST'])
+def add_new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        return render_template('index.html')
+    return render_template('make-post.html', form=form)
 
 # TODO: edit_post() to change an existing blog post
 
