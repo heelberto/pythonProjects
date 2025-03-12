@@ -17,11 +17,11 @@ Bootstrap5(app)
 
 
 class PostForm(FlaskForm):
-    title = StringField('Title')
+    title = StringField('Blog Post Title')
     subtitle = StringField('Subtitle')
-    author = StringField('Author')
-    bg_url = StringField('url')
-    body = CKEditorField('Body')
+    author = StringField('Your Name')
+    bg_url = StringField('Blog Image URL')
+    body = CKEditorField('Blog Content')
     submit = SubmitField('Submit')
 
 # CREATE DATABASE

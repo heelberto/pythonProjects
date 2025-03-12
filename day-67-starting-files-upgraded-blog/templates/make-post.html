@@ -27,11 +27,12 @@
         <!-- TODO:-Add CKEditor and render the form here -->
 
         <form method="post">
-          {{ form.title() }}
-          {{ form.subtitle() }}
-          {{ form.author() }}
-          {{ form.bg_url() }}
-          {{ form.body() }}
+          {{ form.csrf_token }}
+          {{ form.title.label}} <br> {{ form.title() }} <br>
+          {{ form.subtitle.label}} <br> {{ form.subtitle() }} <br>
+          {{ form.author.label}} <br> {{ form.author() }} <br>
+          {{ form.bg_url.label}} <br> {{ form.bg_url() }} <br>
+          {{ form.body.label}} <br> {{ form.body() }}<br>
           {{ form.submit() }}
         </form>
 
