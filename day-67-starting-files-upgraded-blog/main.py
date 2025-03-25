@@ -1,3 +1,5 @@
+import datetime
+
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
@@ -66,12 +68,13 @@ def add_new_post():
     if form.validate_on_submit():
         # print(form.title.data)
         newPost = BlogPost(
-            title= form.title.data,
-            subtitle= form.subtitle.data,
-            date= 'July 13, 2023',
-            body= form.body.data,
-            author= form.author.data,
-            img_url= 'https://imgs.search.brave.com/BW__i2u-_aUDX7WcqOc0ZZIrdXUDN73s-jcnwRqSN8k/rs:fit:1024:704:1/g:ce/aHR0cHM6Ly9zdGF0/aWMwMS5ueXQuY29t/L2ltYWdlcy8yMDEx/LzAxLzE0L2FydHMv/MTRNT1ZJTkctc3Bh/bi9NT1ZJTkctanVt/Ym8uanBn'
+            title=form.title.data,
+            subtitle=form.subtitle.data,
+            #date= 'July 13, 2023',
+            date=datetime.datetime.now().strftime("%B %d, %Y"),
+            body=form.body.data,
+            author=form.author.data,
+            img_url='https://imgs.search.brave.com/BW__i2u-_aUDX7WcqOc0ZZIrdXUDN73s-jcnwRqSN8k/rs:fit:1024:704:1/g:ce/aHR0cHM6Ly9zdGF0/aWMwMS5ueXQuY29t/L2ltYWdlcy8yMDEx/LzAxLzE0L2FydHMv/MTRNT1ZJTkctc3Bh/bi9NT1ZJTkctanVt/Ym8uanBn'
         )
         db.session.add(newPost)
         db.session.commit()
