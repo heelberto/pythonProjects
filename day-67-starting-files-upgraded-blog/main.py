@@ -1,6 +1,6 @@
 import datetime
 
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -64,6 +64,7 @@ def show_post(post_id):
 # TODO: add_new_post() to create a new blog post
 @app.route('/new-post', methods=['GET', 'POST'])
 def add_new_post():
+    source = request.args.get('source')
     form = PostForm()
     if form.validate_on_submit():
         # print(form.title.data)
@@ -79,9 +80,18 @@ def add_new_post():
         db.session.add(newPost)
         db.session.commit()
         return redirect(url_for('get_all_posts'))
-    return render_template('make-post.html', form=form)
+    return render_template('make-post.html', form=form, source=source)
 
 # TODO: edit_post() to change an existing blog post
+
+@app.route('/edit-post/<post_id>', methods=['GET'])
+def edit_post(post_id):
+    source = request.args.get('source')
+    form = PostForm()
+    #requested_post = db.get_or_404(BlogPost, post_id)
+    #return f"successfuly reached edit post route-- post.id = {post_id}" #render_template('make-post.html')
+    return render_template('make-post.html', form=form, source=source)
+
 
 # TODO: delete_post() to remove a blog post from the database
 
