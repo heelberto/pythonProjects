@@ -88,8 +88,15 @@ def add_new_post():
 def edit_post(post_id):
     source = request.args.get('source')
     form = PostForm()
-    #requested_post = db.get_or_404(BlogPost, post_id)
-    #return f"successfuly reached edit post route-- post.id = {post_id}" #render_template('make-post.html')
+    requested_post = db.get_or_404(BlogPost, post_id)
+    # return f"successfuly reached edit post route-- post.id = {post_id}" #render_template('make-post.html')
+
+    form.title.data = requested_post.title
+    form.subtitle.data = requested_post.subtitle
+    form.author.data = requested_post.author
+    form.bg_url.data = requested_post.img_url
+    form.body.data = requested_post.body
+
     return render_template('make-post.html', form=form, source=source)
 
 
