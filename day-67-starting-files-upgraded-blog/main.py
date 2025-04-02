@@ -82,20 +82,23 @@ def add_new_post():
         return redirect(url_for('get_all_posts'))
     return render_template('make-post.html', form=form, source=source)
 
-# TODO: edit_post() to change an existing blog post
 
-@app.route('/edit-post/<post_id>', methods=['GET'])
+@app.route('/edit-post/<post_id>', methods=['GET','POST'])
 def edit_post(post_id):
     source = request.args.get('source')
-    form = PostForm()
     requested_post = db.get_or_404(BlogPost, post_id)
-    # return f"successfuly reached edit post route-- post.id = {post_id}" #render_template('make-post.html')
+    form = PostForm(obj=requested_post)
 
-    form.title.data = requested_post.title
-    form.subtitle.data = requested_post.subtitle
-    form.author.data = requested_post.author
-    form.bg_url.data = requested_post.img_url
-    form.body.data = requested_post.body
+    if form.validate_on_submit():
+        requested_post.title=form.title.data
+        requested_post.subtitle=form.subtitle.data
+        requested_post.author=form.author.data
+        requested_post.img_url=form.bg_url.data
+        requested_post.body=form.body.data
+        print(form.body.data)
+
+        db.session.commit()
+        return redirect(url_for('get_all_posts'))
 
     return render_template('make-post.html', form=form, source=source)
 
