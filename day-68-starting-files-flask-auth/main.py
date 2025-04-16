@@ -63,6 +63,9 @@ def secrets():
     first_name=request.args.get('name')
     return render_template("secrets.html", name=first_name)
 
+@app.route('/return_file')
+def return_file():
+    return send_from_directory(directory='static/files', path='cheat_sheet.pdf')
 
 @app.route('/logout')
 def logout():
